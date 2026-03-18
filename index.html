@@ -3,437 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comunicado Servicio Social – Ciclovía</title>
+<title>Comunicado Jornadas #2 & #3 – 22 y 23 Marzo 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cosmic-dark: #050814;
-    --nebula-blue: #0d1b3e;
-    --star-gold: #f5c842;
-    --plasma-orange: #ff6a1a;
-    --aurora-cyan: #00e5ff;
-    --nebula-pink: #ff3da6;
-    --space-purple: #7b2fff;
-    --stardust: #c8d6ff;
+    --dark: #050814;
+    --gold: #f5c842;
+    --orange: #ff6a1a;
+    --cyan: #00e5ff;
+    --pink: #ff3da6;
+    --purple: #7b2fff;
+    --mint: #3dffa0;
+    --dust: #c8d6ff;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); font-family:'Exo 2',sans-serif; color:#fff; overflow-x:hidden; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--cosmic-dark);
-    font-family: 'Exo 2', sans-serif;
-    color: white;
-    overflow-x: hidden;
-  }
-
-  /* STARFIELD */
-  .starfield {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .star {
-    position: absolute;
-    border-radius: 50%;
-    background: white;
-    animation: twinkle var(--t, 3s) ease-in-out infinite alternate;
-  }
-  @keyframes twinkle {
-    from { opacity: 0.1; transform: scale(0.8); }
-    to   { opacity: 1;   transform: scale(1.2); }
-  }
-
-  /* NEBULA BACKGROUND GLOW */
-  .nebula-glow {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+  .nebula { position:fixed; inset:0; z-index:0; pointer-events:none;
     background:
-      radial-gradient(ellipse 80% 50% at 15% 20%, rgba(123,47,255,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 85% 70%, rgba(255,61,166,0.15) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,229,255,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 90% 80% at 30% 80%, rgba(255,106,26,0.12) 0%, transparent 60%);
-  }
+      radial-gradient(ellipse 75% 55% at 8% 12%, rgba(123,47,255,.17) 0%, transparent 58%),
+      radial-gradient(ellipse 55% 45% at 92% 72%, rgba(255,61,166,.13) 0%, transparent 52%),
+      radial-gradient(ellipse 65% 65% at 50% 50%, rgba(0,229,255,.06) 0%, transparent 68%),
+      radial-gradient(ellipse 50% 75% at 22% 88%, rgba(255,106,26,.10) 0%, transparent 52%); }
+  canvas#stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+  .planet { position:fixed; border-radius:50%; pointer-events:none; z-index:0; }
+  .p1 { width:200px;height:200px; top:-65px;right:-65px;
+    background:radial-gradient(circle at 35% 35%,rgba(0,229,255,.2),rgba(5,8,20,.92));
+    border:1px solid rgba(0,229,255,.12); box-shadow:0 0 70px rgba(0,229,255,.09); }
+  .p2 { width:130px;height:130px; bottom:7%;left:-45px;
+    background:radial-gradient(circle at 40% 40%,rgba(255,61,166,.18),rgba(5,8,20,.92));
+    border:1px solid rgba(255,61,166,.12); box-shadow:0 0 45px rgba(255,61,166,.09); }
 
-  /* WRAPPER */
-  .infographic {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 24px 60px;
-  }
+  .page { position:relative; z-index:1; max-width:940px; margin:0 auto; padding:44px 24px 80px; }
 
-  /* ===== HEADER ===== */
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  .header-orbit {
-    display: inline-block;
-    position: relative;
-    padding: 0 60px;
-  }
-  .header-orbit::before,
-  .header-orbit::after {
-    content: '✦';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 28px;
-    color: var(--star-gold);
-    animation: spinGlow 4s linear infinite;
-  }
-  .header-orbit::before { left: 0; }
-  .header-orbit::after { right: 0; animation-direction: reverse; }
-  @keyframes spinGlow {
-    0%   { text-shadow: 0 0 8px var(--star-gold); }
-    50%  { text-shadow: 0 0 24px var(--plasma-orange), 0 0 40px var(--star-gold); }
-    100% { text-shadow: 0 0 8px var(--star-gold); }
-  }
+  .rv { opacity:0; transform:translateY(26px); transition:opacity .6s ease,transform .6s ease; }
+  .rv.in { opacity:1; transform:translateY(0); }
 
-  .badge-comunicado {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--space-purple), var(--nebula-pink));
-    font-family: 'Orbitron', sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    padding: 6px 20px;
-    border-radius: 30px;
-    margin-bottom: 14px;
-    box-shadow: 0 0 20px rgba(255,61,166,0.5);
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(255,61,166,0.5); }
-    50% { box-shadow: 0 0 40px rgba(255,61,166,0.9), 0 0 60px rgba(123,47,255,0.4); }
-  }
-
-  .main-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(28px, 6vw, 56px);
-    font-weight: 900;
-    line-height: 1.1;
-    background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--star-gold) 50%, var(--plasma-orange) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 6px;
-    filter: drop-shadow(0 0 20px rgba(0,229,255,0.4));
-  }
-  .sub-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(14px, 3vw, 22px);
-    color: var(--stardust);
-    letter-spacing: 3px;
-    opacity: 0.8;
-  }
-
-  /* META PILLS */
-  .meta-row {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin: 24px 0 0;
-  }
-  .meta-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(0,229,255,0.3);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    border-radius: 40px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--aurora-cyan);
-    box-shadow: 0 0 20px rgba(0,229,255,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
-    transition: all 0.3s;
-  }
-  .meta-pill:hover {
-    background: rgba(0,229,255,0.12);
-    box-shadow: 0 0 30px rgba(0,229,255,0.3);
-    transform: translateY(-2px);
-  }
-  .meta-pill .icon { font-size: 20px; }
+  /* HEADER */
+  .hdr { text-align:center; margin-bottom:44px; }
+  .hbadge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg,rgba(0,229,255,.18),rgba(255,61,166,.18));
+    border:1px solid rgba(0,229,255,.35); border-radius:40px;
+    padding:6px 24px; font-family:'Orbitron',sans-serif;
+    font-size:9.5px; letter-spacing:3.5px; color:var(--cyan); margin-bottom:16px;
+    animation:hbp 3s ease-in-out infinite; }
+  @keyframes hbp{0%,100%{box-shadow:0 0 14px rgba(0,229,255,.22);}50%{box-shadow:0 0 34px rgba(0,229,255,.5),0 0 55px rgba(255,61,166,.18);}}
+  .htitle {
+    font-family:'Orbitron',sans-serif; font-size:clamp(24px,5.2vw,52px); font-weight:900; line-height:1.05;
+    background:linear-gradient(135deg,var(--cyan) 0%,var(--gold) 52%,var(--orange) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 20px rgba(0,229,255,.33)); margin-bottom:8px; }
+  .hsub { font-family:'Orbitron',sans-serif; font-size:clamp(10px,1.8vw,13px); color:var(--dust); letter-spacing:2.5px; opacity:.6; }
+  .hcorredor {
+    margin-top:14px; display:inline-block;
+    background:rgba(245,200,66,.08); border:1px solid rgba(245,200,66,.28);
+    border-radius:10px; padding:8px 20px;
+    font-size:12.5px; color:var(--gold); letter-spacing:.8px; }
+  .dpills { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:22px; }
+  .dpill { display:flex; align-items:center; gap:10px; padding:11px 20px; border-radius:50px; font-weight:700; font-size:14px; transition:transform .25s; }
+  .dpill:hover{transform:translateY(-2px);}
+  .dp1 { background:rgba(0,229,255,.08); border:1px solid rgba(0,229,255,.38); color:var(--cyan); }
+  .dp2 { background:rgba(255,61,166,.08); border:1px solid rgba(255,61,166,.38); color:var(--pink); }
+  .pnum { font-family:'Orbitron',sans-serif; font-size:9.5px; letter-spacing:2px; opacity:.62; text-transform:uppercase; }
 
   /* DIVIDER */
-  .cosmic-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 36px 0;
-  }
-  .cosmic-divider .line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--space-purple), var(--aurora-cyan), var(--space-purple), transparent);
-  }
-  .cosmic-divider .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--aurora-cyan);
-    box-shadow: 0 0 12px var(--aurora-cyan);
-    animation: dotPulse 1.5s ease-in-out infinite;
-  }
-  @keyframes dotPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-  }
+  .dv { display:flex; align-items:center; gap:10px; margin:30px 0; }
+  .dv .ln { flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),var(--purple),transparent); }
+  .dv .dt { width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:dtp 1.5s ease-in-out infinite; }
+  @keyframes dtp{0%,100%{transform:scale(1);}50%{transform:scale(1.6);}}
 
-  /* ===== CARDS ===== */
+  /* CARD */
   .card {
-    background: rgba(13,27,62,0.6);
-    border: 1px solid rgba(0,229,255,0.15);
-    border-radius: 20px;
-    padding: 28px 32px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(12px);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--card-accent, linear-gradient(90deg, var(--aurora-cyan), var(--space-purple)));
-    border-radius: 20px 20px 0 0;
-  }
-  .card::after {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--card-glow, rgba(0,229,255,0.06)) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 40px rgba(0,229,255,0.12);
-  }
+    background:rgba(10,16,46,.68); border:1px solid rgba(255,255,255,.07);
+    border-radius:20px; padding:24px 28px; margin-bottom:20px;
+    backdrop-filter:blur(14px); position:relative; overflow:hidden;
+    transition:transform .3s,box-shadow .3s; }
+  .card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px;
+    background:var(--ca,linear-gradient(90deg,var(--cyan),var(--purple))); border-radius:20px 20px 0 0; }
+  .card:hover { transform:translateY(-3px); box-shadow:0 8px 36px rgba(0,229,255,.09); }
+  .ch { display:flex; align-items:center; gap:13px; margin-bottom:15px; }
+  .ci { width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0; }
+  .ct { font-family:'Orbitron',sans-serif; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); }
+  .cs { font-size:11.5px; color:var(--dust); opacity:.5; margin-top:2px; }
 
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-  }
-  .card-icon {
-    width: 50px; height: 50px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    flex-shrink: 0;
-  }
-  .card-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--aurora-cyan);
-  }
-  .card-subtitle {
-    font-size: 12px;
-    color: var(--stardust);
-    opacity: 0.6;
-    margin-top: 2px;
-  }
-  .card p {
-    color: var(--stardust);
-    line-height: 1.75;
-    font-size: 15px;
-  }
+  .greet { text-align:center; --ca:linear-gradient(90deg,var(--gold),var(--orange)); }
+  .gtxt { font-size:clamp(15px,2.7vw,22px); font-weight:300; font-style:italic;
+    color:var(--gold); text-shadow:0 0 22px rgba(245,200,66,.38); }
 
-  /* GREETING CARD */
-  .card-greeting {
-    --card-accent: linear-gradient(90deg, var(--star-gold), var(--plasma-orange));
-    --card-glow: rgba(245,200,66,0.08);
-    text-align: center;
-  }
-  .greeting-text {
-    font-size: clamp(18px, 3vw, 26px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--star-gold);
-    letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(245,200,66,0.4);
-  }
+  .bl { list-style:none; margin-top:10px; }
+  .bl li { display:flex; align-items:flex-start; gap:10px; padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.05); color:var(--dust); font-size:14px; line-height:1.55; }
+  .bl li:last-child{border-bottom:none;}
+  .bd{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .bc{background:var(--cyan);box-shadow:0 0 7px var(--cyan);}
+  .bp{background:var(--pink);box-shadow:0 0 7px var(--pink);}
+  .bo{background:var(--orange);box-shadow:0 0 7px var(--orange);}
+  .bm{background:var(--mint);box-shadow:0 0 7px var(--mint);}
+  .bg{background:var(--gold);box-shadow:0 0 7px var(--gold);}
 
-  /* JORNADA COUNT */
-  .count-display {
-    text-align: center;
-    margin: 16px 0;
-  }
-  .count-number {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(60px, 12vw, 100px);
-    font-weight: 900;
-    line-height: 1;
-    background: linear-gradient(180deg, var(--aurora-cyan), var(--space-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(0,229,255,0.5));
-    display: block;
-    animation: countGlow 3s ease-in-out infinite;
-  }
-  @keyframes countGlow {
-    0%, 100% { filter: drop-shadow(0 0 20px rgba(0,229,255,0.4)); }
-    50% { filter: drop-shadow(0 0 50px rgba(0,229,255,0.8)); }
-  }
-  .count-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--stardust);
-    opacity: 0.7;
-    text-transform: uppercase;
-  }
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:620px){.two{grid-template-columns:1fr;}.card{padding:18px 20px;}}
 
-  /* BULLET ITEMS */
-  .bullets {
-    list-style: none;
-    margin-top: 12px;
-  }
-  .bullets li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: var(--stardust);
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  .bullets li:last-child { border-bottom: none; }
-  .bullet-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--aurora-cyan);
-    box-shadow: 0 0 8px var(--aurora-cyan);
-    flex-shrink: 0;
-    margin-top: 6px;
-  }
-  .bullet-dot.orange { background: var(--plasma-orange); box-shadow: 0 0 8px var(--plasma-orange); }
-  .bullet-dot.pink { background: var(--nebula-pink); box-shadow: 0 0 8px var(--nebula-pink); }
+  .sl{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .sl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--pink),transparent);}
 
-  /* ===== ROLES GRID ===== */
-  .roles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 16px;
-    margin-top: 8px;
-  }
-  .role-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 16px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    cursor: default;
-  }
-  .role-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--role-bg, transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .role-card:hover::before { opacity: 1; }
-  .role-card:hover {
-    border-color: var(--role-color, var(--aurora-cyan));
-    box-shadow: 0 0 20px var(--role-shadow, rgba(0,229,255,0.2));
-    transform: translateY(-3px);
-  }
-  .role-emoji {
-    font-size: 28px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
-  }
-  .role-info { z-index: 1; }
-  .role-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--role-color, var(--aurora-cyan));
-    margin-bottom: 3px;
-  }
-  .role-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-  }
+  /* REPORTES */
+  .rep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:8px;}
+  .rep-item{
+    background:rgba(255,255,255,.024);border:1px solid rgba(255,255,255,.06);
+    border-radius:14px;padding:16px;position:relative;overflow:hidden;transition:all .3s;}
+  .rep-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ric,var(--cyan));}
+  .rep-item:hover{transform:translateY(-3px);border-color:var(--ric,rgba(0,229,255,.3));box-shadow:0 4px 20px rgba(0,0,0,.3);}
+  .ritime{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--ric,var(--cyan));margin-bottom:4px;}
+  .rilabel{font-size:12px;color:var(--dust);opacity:.85;line-height:1.45;}
+  .riico{font-size:22px;margin-bottom:8px;display:block;}
+  .rc1{--ric:var(--cyan);}
+  .rc2{--ric:var(--orange);}
+  .rc3{--ric:var(--pink);}
+  .rc4{--ric:var(--gold);}
+  .rc5{--ric:#a78fff;}
+  .rc6{--ric:var(--mint);}
 
-  /* Roles colors */
-  .role-0 { --role-color: #f5c842; --role-shadow: rgba(245,200,66,0.25); --role-bg: linear-gradient(135deg, rgba(245,200,66,0.05), transparent); }
-  .role-1 { --role-color: #00e5ff; --role-shadow: rgba(0,229,255,0.25); --role-bg: linear-gradient(135deg, rgba(0,229,255,0.05), transparent); }
-  .role-2 { --role-color: #ff3da6; --role-shadow: rgba(255,61,166,0.25); --role-bg: linear-gradient(135deg, rgba(255,61,166,0.05), transparent); }
-  .role-3 { --role-color: #a78fff; --role-shadow: rgba(167,143,255,0.25); --role-bg: linear-gradient(135deg, rgba(167,143,255,0.05), transparent); }
-  .role-4 { --role-color: #3dffa0; --role-shadow: rgba(61,255,160,0.25); --role-bg: linear-gradient(135deg, rgba(61,255,160,0.05), transparent); }
-  .role-5 { --role-color: #ff6a1a; --role-shadow: rgba(255,106,26,0.25); --role-bg: linear-gradient(135deg, rgba(255,106,26,0.05), transparent); }
-  .role-6 { --role-color: #00bfff; --role-shadow: rgba(0,191,255,0.25); --role-bg: linear-gradient(135deg, rgba(0,191,255,0.05), transparent); }
+  /* CALLOUT */
+  .callout{display:flex;gap:12px;border-radius:12px;padding:13px 16px;margin-top:12px;
+    border-left:3px solid var(--clc,var(--gold));background:rgba(var(--clr,245,200,66),.055);}
+  .callout .cico{font-size:18px;flex-shrink:0;}
+  .callout .ctxt{font-size:13px;color:var(--dust);line-height:1.6;}
+  .callout .ctxt strong{color:var(--clc,var(--gold));}
+  .cwarn{--clc:var(--orange);--clr:255,106,26;}
+  .cinfo{--clc:var(--cyan);--clr:0,229,255;}
+  .cgold{--clc:var(--gold);--clr:245,200,66;}
+  .cmint{--clc:var(--mint);--clr:61,255,160;}
 
-  /* ===== OBJECTIVE BANNER ===== */
-  .objective-banner {
-    background: linear-gradient(135deg, rgba(123,47,255,0.3), rgba(0,229,255,0.15), rgba(255,106,26,0.2));
-    border: 1px solid rgba(0,229,255,0.4);
-    border-radius: 20px;
-    padding: 32px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin-top: 24px;
-  }
-  .objective-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 20% 50%, rgba(123,47,255,0.2) 0%, transparent 50%),
-      radial-gradient(circle at 80% 50%, rgba(0,229,255,0.15) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .obj-check {
-    font-size: 50px;
-    margin-bottom: 12px;
-    display: block;
-    animation: floatCheck 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(61,255,160,0.6));
-  }
-  @keyframes floatCheck {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  .obj-text {
-    font-size: clamp(14px, 2.5vw, 18px);
-    line-height: 1.8;
-    color: var(--stardust);
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .obj-text strong {
-    color: var(--aurora-cyan);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9em;
-  }
+  /* HORARIO */
+  .sched{
+    background:rgba(10,16,46,.68);border:1px solid rgba(0,229,255,.1);
+    border-radius:20px;overflow:hidden;margin-bottom:20px;backdrop-filter:blur(14px);position:relative;}
+  .sched::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--cyan),var(--pink),var(--cyan));
+    background-size:200%;animation:ml 4s linear infinite;}
+  @keyframes ml{0%{background-position:0%}100%{background-position:200%}}
+
+  .tabbar{display:flex;border-bottom:1px solid rgba(0,229,255,.1);}
+  .tbtn{
+    flex:1;padding:15px 10px;background:transparent;border:none;cursor:pointer;
+    font-family:'Orbitron',sans-serif;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;
+    color:rgba(200,214,255,.38);position:relative;transition:all .3s;
+    display:flex;align-items:center;justify-content:center;gap:7px;}
+  .tbtn::after{content:'';position:absolute;bottom:-1px;left:15%;right:15%;height:2px;
+    background:var(--tc,var(--cyan));border-radius:2px;transform:scaleX(0);transition:transform .3s;}
+  .tbtn.on{color:var(--tc,var(--cyan));}
+  .tbtn.on::after{transform:scaleX(1);}
+  .tbtn:hover{color:var(--tc,var(--cyan));background:rgba(255,255,255,.02);}
+  .t1{--tc:var(--cyan);}.t2{--tc:var(--pink);}
+
+  .tpanel{display:none;padding:26px 28px;}
+  .tpanel.on{display:block;}
+
+  /* TIMELINE */
+  .tl{position:relative;padding-left:56px;}
+  .tl::before{content:'';position:absolute;left:25px;top:0;bottom:0;width:1px;
+    background:linear-gradient(180deg,transparent,var(--tlc,var(--cyan)) 12%,var(--tlc,var(--cyan)) 88%,transparent);}
+  .d1t{--tlc:var(--cyan);--tlr:0,229,255;}
+  .d2t{--tlc:var(--pink);--tlr:255,61,166;}
+
+  .tli{position:relative;margin-bottom:4px;cursor:pointer;}
+  .tldot{position:absolute;left:-43px;top:17px;width:13px;height:13px;border-radius:50%;
+    background:var(--tlc,var(--cyan));box-shadow:0 0 11px var(--tlc,var(--cyan));
+    border:2px solid var(--dark);transition:all .3s;z-index:2;}
+  .tli:hover .tldot,.tli.open .tldot{transform:scale(1.45);box-shadow:0 0 22px var(--tlc,var(--cyan));}
+
+  .tlh{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:11px;margin-bottom:2px;
+    background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);transition:all .3s;user-select:none;}
+  .tli:hover .tlh,.tli.open .tlh{background:rgba(var(--tlr,0,229,255),.07);border-color:rgba(var(--tlr,0,229,255),.24);}
+  .tltime{font-family:'Orbitron',sans-serif;font-size:12.5px;font-weight:700;color:var(--tlc,var(--cyan));min-width:90px;flex-shrink:0;}
+  .tlico{font-size:19px;flex-shrink:0;}
+  .tllb{flex:1;}
+  .tlname{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px;}
+  .tlhint{font-size:11px;color:var(--dust);opacity:.44;}
+  .tlarr{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.05);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .3s;color:var(--tlc,var(--cyan));font-size:11px;flex-shrink:0;}
+  .tli.open .tlarr{transform:rotate(180deg);}
+
+  .tldet{overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.4,0,.2,1);}
+  .tli.open .tldet{max-height:500px;}
+  .tlinn{padding:13px 15px 15px;margin-bottom:6px;
+    background:rgba(var(--tlr,0,229,255),.04);
+    border:1px solid rgba(var(--tlr,0,229,255),.12);
+    border-top:none;border-radius:0 0 11px 11px;}
+  .tlinn ul{list-style:none;}
+  .tlinn ul li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;
+    font-size:13px;color:var(--dust);line-height:1.5;border-bottom:1px solid rgba(255,255,255,.04);}
+  .tlinn ul li:last-child{border-bottom:none;}
+  .tlinn ul li::before{content:'▸';color:var(--tlc,var(--cyan));font-size:9px;margin-top:3px;flex-shrink:0;}
+  .tlbadge{display:inline-block;background:rgba(var(--tlr,0,229,255),.1);
+    border:1px solid rgba(var(--tlr,0,229,255),.28);border-radius:20px;
+    padding:3px 12px;font-size:10.5px;color:var(--tlc,var(--cyan));
+    font-family:'Orbitron',sans-serif;letter-spacing:1.5px;margin-bottom:8px;}
+
+  /* CODES */
+  .code-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .cbadge{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;
+    padding:10px 20px;border-radius:12px;letter-spacing:.5px;}
+  .c57{background:rgba(255,106,26,.12);border:1px solid rgba(255,106,26,.28);color:var(--orange);}
+  .c58{background:rgba(61,255,160,.1);border:1px solid rgba(61,255,160,.28);color:var(--mint);}
+
+  /* DRIVE */
+  .drive-row{display:flex;align-items:center;gap:14px;background:rgba(61,255,160,.05);
+    border:1px solid rgba(61,255,160,.2);border-radius:13px;padding:14px 18px;margin-top:12px;
+    transition:all .3s;text-decoration:none;}
+  .drive-row:hover{background:rgba(61,255,160,.09);transform:translateY(-2px);box-shadow:0 0 22px rgba(61,255,160,.12);}
+  .drive-info{flex:1;}
+  .drive-title2{font-family:'Orbitron',sans-serif;font-size:9.5px;letter-spacing:2px;color:var(--mint);margin-bottom:3px;}
+  .drive-desc2{font-size:12.5px;color:var(--dust);opacity:.8;}
+  .drive-btn2{background:linear-gradient(135deg,rgba(61,255,160,.2),rgba(0,229,255,.15));
+    border:1px solid rgba(61,255,160,.28);border-radius:10px;padding:8px 15px;
+    font-family:'Orbitron',sans-serif;font-size:9.5px;letter-spacing:1.5px;color:var(--mint);
+    flex-shrink:0;transition:all .3s;}
+  .drive-row:hover .drive-btn2{background:rgba(61,255,160,.3);}
+
+  /* FINAL */
+  .final{text-align:center;
+    background:linear-gradient(135deg,rgba(123,47,255,.2),rgba(0,229,255,.1),rgba(255,61,166,.13));
+    border:1px solid rgba(0,229,255,.26);border-radius:20px;
+    padding:30px 24px;margin-top:6px;position:relative;overflow:hidden;}
+  .final::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 25% 50%,rgba(123,47,255,.14) 0%,transparent 52%),
+               radial-gradient(circle at 75% 50%,rgba(0,229,255,.09) 0%,transparent 52%);pointer-events:none;}
+  .ficon{font-size:42px;display:block;margin-bottom:10px;animation:flt 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 16px rgba(61,255,160,.4));}
+  @keyframes flt{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+  .final p{font-size:clamp(13px,2.1vw,15px);color:var(--dust);line-height:1.75;position:relative;z-index:1;}
+  .final strong{color:var(--cyan);font-family:'Orbitron',sans-serif;font-size:.88em;}
 
   /* FOOTER */
   .footer {
@@ -450,309 +254,407 @@
     opacity: 0.4;
     text-transform: uppercase;
   }
-
-  /* TWO COL */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  @media (max-width: 600px) {
-    .two-col { grid-template-columns: 1fr; }
-    .card { padding: 20px; }
-  }
-
-  /* SECTION LABEL */
-  .section-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--nebula-pink);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--nebula-pink), transparent);
-  }
-
-  /* PLANET DECORATIONS */
-  .planet {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .planet-1 {
-    width: 200px; height: 200px;
-    top: -60px; right: -60px;
-    background: radial-gradient(circle at 35% 35%, rgba(123,47,255,0.3), rgba(13,27,62,0.8));
-    border: 1px solid rgba(123,47,255,0.2);
-    box-shadow: 0 0 60px rgba(123,47,255,0.15);
-  }
-  .planet-2 {
-    width: 120px; height: 120px;
-    bottom: 5%; left: -40px;
-    background: radial-gradient(circle at 40% 40%, rgba(255,106,26,0.25), rgba(13,27,62,0.8));
-    border: 1px solid rgba(255,106,26,0.2);
-    box-shadow: 0 0 40px rgba(255,106,26,0.1);
-  }
-
-  /* WARNING CALLOUT */
-  .callout {
-    display: flex;
-    gap: 14px;
-    background: rgba(245,200,66,0.07);
-    border-left: 3px solid var(--star-gold);
-    border-radius: 0 12px 12px 0;
-    padding: 14px 18px;
-    margin-top: 14px;
-  }
-  .callout-icon { font-size: 22px; flex-shrink: 0; }
-  .callout-text { font-size: 14px; color: var(--stardust); line-height: 1.6; opacity: 0.9; }
-  .callout-text strong { color: var(--star-gold); }
 </style>
 </head>
 <body>
 
-<!-- DECORATIVE PLANETS -->
-<div class="planet planet-1"></div>
-<div class="planet planet-2"></div>
+<div class="nebula"></div>
+<canvas id="stars"></canvas>
+<div class="planet p1"></div>
+<div class="planet p2"></div>
 
-<!-- NEBULA BG -->
-<div class="nebula-glow"></div>
+<div class="page">
 
-<!-- STARFIELD -->
-<canvas class="starfield" id="starfield"></canvas>
-
-<div class="infographic">
-
-  <!-- ===== HEADER ===== -->
-  <div class="header">
-    <div class="badge-comunicado">🛸 Comunicado Oficial</div>
-    <div class="header-orbit">
-      <h1 class="main-title">SERVICIO SOCIAL</h1>
+  <!-- HEADER -->
+  <div class="hdr rv">
+    <div class="hbadge">🛸 Comunicado Servicio Social
     </div>
-
-    <div class="meta-row">
-      <div class="meta-pill">
-        <span class="icon">📅</span>
-        <span>15 de Octubre</span>
-      </div>
-      <div class="meta-pill">
-        <span class="icon">📍</span>
-        <span>Módulo 1</span>
-      </div>
-      <div class="meta-pill">
-        <span class="icon">🛡️</span>
-        <span>Jornada de Reconocimiento</span>
-      </div>
+    <h1 class="htitle">JORNADAS EN RUTA<br>#2 &amp; #3</h1>
+    <p class="hsub">Módulo 1</p>
+    <div class="hcorredor">📍 Sur 5 — Ciclorruta Porvenir &amp; Av. Guayacanes</div>
+    <div class="dpills">
+      <div class="dpill dp1"><span>🔵</span><div><div class="pnum">Jornada #2 · Domingo</div><div style="font-size:16px;font-weight:700;">22 de Marzo</div></div></div>
+      <div class="dpill dp2"><span>🔴</span><div><div class="pnum">Jornada #3 · Lunes Festivo</div><div style="font-size:16px;font-weight:700;">23 de Marzo</div></div></div>
     </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div class="cosmic-divider">
-    <div class="line"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="line"></div>
   </div>
 
   <!-- GREETING -->
-  <div class="card card-greeting">
-    <div class="card-icon" style="background: linear-gradient(135deg,rgba(245,200,66,0.2),rgba(255,106,26,0.2)); margin: 0 auto 12px; width:56px; height:56px; border-radius:50%; font-size:28px; display:flex; align-items:center; justify-content:center;">🌟</div>
-    <p class="greeting-text">¡Muy buen día, caballeros y señoritas!</p>
+  <div class="card greet rv">
+    <div style="font-size:32px;margin-bottom:10px;">🌟</div>
+    <p class="gtxt">¡Muy buen día, caballeros y señoritas!<br>
+    <span style="font-size:.76em;opacity:.75;">Jornada doble este fin de semana — listos y enfocados.</span></p>
   </div>
 
-  <!-- JORNADA + NOVEDAD -->
-  <div class="two-col">
+  <!-- REPORTES -->
+  <div class="sl rv">📌 Reportes del día</div>
+  <p class="rv" style="font-size:13px;color:var(--dust);opacity:.6;margin-bottom:14px;">Horarios límite para los reportes que deben enviarse durante la jornada.</p>
+  <div class="rep-grid rv">
+    <div class="rep-item rc1"><span class="riico">📋</span><div class="ritime">08:30</div><div class="rilabel">Asistencia en el drive<br><span style="opacity:.58;font-size:11px;">Hora máxima de envío</span></div></div>
+    <div class="rep-item rc2"><span class="riico">🎥</span><div class="ritime">10:30</div><div class="rilabel">Campañas 1ª entrega<br><span style="opacity:.58;font-size:11px;">(2) video + (2) foto</span></div></div>
+    <div class="rep-item rc3"><span class="riico">📷</span><div class="ritime">12:30</div><div class="rilabel">Campañas 2ª entrega<br><span style="opacity:.58;font-size:11px;">(2) video + (2) foto</span></div></div>
+    <div class="rep-item rc4"><span class="riico">📔</span><div class="ritime">14:00</div><div class="rilabel">Foto libreta firmada<br><span style="opacity:.58;font-size:11px;">Hora máxima de envío</span></div></div>
+    <div class="rep-item rc5"><span class="riico">📊</span><div class="ritime">16:00</div><div class="rilabel">Reporte 523<br><span style="opacity:.58;font-size:11px;">Hora máxima de envío</span></div></div>
+    <div class="rep-item rc6"><span class="riico">📁</span><div class="ritime">17:30</div><div class="rilabel">Revisión HV +<br>Informe de varios <br><span style="opacity:.58;font-size:11px;">Guardián de tramo · salud</span></div></div>
+  </div>
+  <div class="callout cgold rv">
+    <span class="cico">💡</span>
+    <span class="ctxt">El <strong>Informe de Varios (17:30)</strong> es responsabilidad del Guardián de tramo, especialmente cuando hay novedades de salud de algún servidor durante la jornada.</span>
+  </div>
 
-    <div class="card" style="--card-accent: linear-gradient(90deg, var(--aurora-cyan), var(--space-purple));">
-      <div class="card-header">
-        <div class="card-icon" style="background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(123,47,255,0.2));">🚀</div>
-        <div>
-          <div class="card-title">Asistencia Prevista</div>
-          <div class="card-subtitle">Jornada de Reconocimiento</div>
+  <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
+
+  <!-- HORARIO INTERACTIVO -->
+  <div class="sl rv">⏱️ Horario de servidores sociales</div>
+  <p class="rv" style="font-size:13px;color:var(--dust);opacity:.6;margin-bottom:16px;">Horario que manejan los servidores sociales en el corredor. Toca cada bloque para ver el detalle.</p>
+
+  <div class="sched rv">
+    <div class="tabbar">
+      <button class="tbtn t1 on" onclick="switchTab('d1')">🔵 Dom 22 · Jornada #2</button>
+      <button class="tbtn t2" onclick="switchTab('d2')">🔴 Lun 23 · Jornada #3</button>
+    </div>
+
+    <!-- DÍA 1 -->
+    <div class="tpanel on" id="d1">
+      <div class="tl d1t">
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">7:30 am</div>
+            <div class="tlico">📍</div>
+            <div class="tllb"><div class="tlname">Llegada de servidores sociales</div><div class="tlhint">Hora de inicio oficial</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Puntualidad</span>
+            <ul>
+              <li>Los servidores deben estar en el punto a las <strong>7:30 am.</strong></li>
+              <li><strong>7:31 – 7:36 am</strong> → Retardo leve · llamado verbal.</li>
+              <li><strong>7:37 – 7:41 am</strong> → Retardo grave · llamado escrito.</li>
+              <li><strong>Después de 7:45 am</strong> → Falta muy grave / posible incumplimiento.</li>
+              <li>Revisar documentos, uniforme y elementos antes del inicio.</li>
+            </ul>
+          </div></div>
         </div>
-      </div>
-      <div class="count-display">
-        <span class="count-number">19</span>
-        <span class="count-label">Servidores Sociales</span>
-      </div>
-      <div class="callout">
-        <span class="callout-icon"></span>
-        <span class="callout-text">Mantenerse muy <strong>atentos para evitar cualquier 512 </strong>. Pueden presentarse cambios o inasistencias.</span>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">7:30 – 8:30</div>
+            <div class="tlico">🚀</div>
+            <div class="tllb"><div class="tlname">Inicio en punto fijo</div><div class="tlhint">Sin desplazamientos — punto fijo en grupos</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Novedad jornada</span>
+            <ul>
+              <li>En esta jornada los servidores <strong>no se desplazan</strong> — tienen un <strong>punto fijo asignado.</strong></li>
+              <li>Siguen organizados en <strong>grupos</strong> dentro del corredor.</li>
+              <li>Orientar usuarios, apoyar señalización y seguir indicaciones del Guardián encargado.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">8:30 – 10:00</div>
+            <div class="tlico">☕</div>
+            <div class="tllb"><div class="tlname">Primer descanso · servidores</div><div class="tlhint">Asignado por el Beta · 45 min por turno</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Descanso · 45 min</span>
+            <ul>
+              <li><strong>Turno A:</strong> 8:30 am – 9:15 am</li>
+              <li><strong>Turno B:</strong> 9:15 am – 10:00 am</li>
+              <li>El turno lo asigna el <strong>Beta para cada grupo</strong>.</li>
+              <li>El retardo al retomar actividades puede ser falta leve, grave o muy grave.</li>
+              <li>⚠️ A las <strong>8:30 am</strong> también es el límite para enviar la asistencia con plantilla.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">10:00 – 11:00</div>
+            <div class="tlico">🛡️</div>
+            <div class="tllb"><div class="tlname">Operación activa en punto fijo</div><div class="tlhint">Entrega campañas a las 10:30</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Operación</span>
+            <ul>
+              <li>A las <strong>10:30 am</strong> → primera entrega de campañas: (2) video + (2) foto.</li>
+              <li>Servidores activos y de pie en su punto fijo.</li>
+              <li>Registrar novedades del corredor para el informe posterior.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">11:00 – 12:30</div>
+            <div class="tlico">🍽️</div>
+            <div class="tllb"><div class="tlname">Segundo descanso · servidores</div><div class="tlhint">Asignado por el Beta · 45 min por turno</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Descanso · 45 min</span>
+            <ul>
+              <li><strong>Turno A:</strong> 11:00 am – 11:45 am</li>
+              <li><strong>Turno B:</strong> 11:45 am – 12:30 pm</li>
+              <li>Turno asignado por el <strong>Beta para cada grupo</strong>.</li>
+              <li>A las <strong>12:30 pm</strong> → segunda entrega de campañas: (2) video + (2) foto.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">12:30 – 2:00</div>
+            <div class="tlico">🔒</div>
+            <div class="tllb"><div class="tlname">Cierre del corredor</div><div class="tlhint">No retirar material antes de 2:00 pm</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Cierre</span>
+            <ul>
+              <li>Apoyo en levantamiento de vallas, cinta y divisores carril.</li>
+              <li><strong>Nunca retirar material antes de 2:00 pm</strong> — riesgo de ingreso vehicular y accidente.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">2:00 pm</div>
+            <div class="tlico">🏁</div>
+            <div class="tllb"><div class="tlname">Fin jornada #2 · Reportes post-jornada</div><div class="tlhint">Libreta · 523 · HV</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Post-jornada</span>
+            <ul>
+              <li><strong>14:00</strong> → foto de libreta firmada.</li>
+              <li><strong>16:00</strong> → reporte 523.</li>
+              <li><strong>17:30</strong> → revisión HV + informe de varios (novedades de salud).</li>
+              <li>Recordar a los servidores: deben reportar llegada segura a casa en <strong>máximo 1h 30min.</strong></li>
+              <li>Mañana es jornada #3 — mismo corredor, mismo horario.</li>
+            </ul>
+          </div></div>
+        </div>
+
       </div>
     </div>
 
-    <div class="card" style="--card-accent: linear-gradient(90deg, var(--nebula-pink), var(--space-purple));">
-      <div class="card-header">
-        <div class="card-icon" style="background: linear-gradient(135deg, rgba(255,61,166,0.2), rgba(123,47,255,0.2));">🗺️</div>
-        <div>
-          <div class="card-title">Novedad General</div>
-          <div class="card-subtitle">Actividad Principal</div>
+    <!-- DÍA 2 -->
+    <div class="tpanel" id="d2">
+      <div class="tl d2t">
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">7:30 am</div>
+            <div class="tlico">🌅</div>
+            <div class="tllb"><div class="tlname">Llegada de servidores sociales</div><div class="tlhint">Lunes Festivo — misma dinámica</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Festivo 23 Marzo</span>
+            <ul>
+              <li>La Ciclovía opera con normalidad en festivos.</li>
+              <li>Mayor afluencia esperada — mayor atención y disposición requerida.</li>
+              <li>Mismas reglas de puntualidad que el día anterior.</li>
+            </ul>
+          </div></div>
         </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">7:30 – 8:30</div>
+            <div class="tlico">🚀</div>
+            <div class="tllb"><div class="tlname">Inicio en punto fijo</div><div class="tlhint">Festivo — mayor afluencia ciudadana</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Jornada #3 · Festivo</span>
+            <ul>
+              <li>Mismo esquema: <strong>punto fijo</strong>, organizados en grupos.</li>
+              <li>En festivo hay más usuarios — mayor exigencia en atención y servicio.</li>
+              <li>Registrar novedades desde el inicio.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">8:30 – 10:00</div>
+            <div class="tlico">☕</div>
+            <div class="tllb"><div class="tlname">Primer descanso · servidores</div><div class="tlhint">Asignado por el Beta · 45 min por turno</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Descanso · 45 min</span>
+            <ul>
+              <li><strong>Turno A:</strong> 8:30 am – 9:15 am</li>
+              <li><strong>Turno B:</strong> 9:15 am – 10:00 am</li>
+              <li>Turno asignado por el <strong>Beta para cada grupo</strong>.</li>
+              <li>⚠️ Límite para enviar asistencia con plantilla: <strong>8:30 am.</strong></li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">10:00 – 11:00</div>
+            <div class="tlico">🛡️</div>
+            <div class="tllb"><div class="tlname">Operación festiva · punto fijo</div><div class="tlhint">Campañas primera entrega 10:30</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Alta operación</span>
+            <ul>
+              <li>A las <strong>10:30 am</strong> → primera entrega campañas: (2) video + (2) foto.</li>
+              <li>Festivos atraen más familias — atención especial a niños y adultos mayores.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">11:00 – 12:30</div>
+            <div class="tlico">🍽️</div>
+            <div class="tllb"><div class="tlname">Segundo descanso · servidores</div><div class="tlhint">Asignado por el Beta · 45 min por turno</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Descanso · 45 min</span>
+            <ul>
+              <li><strong>Turno A:</strong> 11:00 am – 11:45 am</li>
+              <li><strong>Turno B:</strong> 11:45 am – 12:30 pm</li>
+              <li>A las <strong>12:30 pm</strong> → segunda entrega campañas: (2) video + (2) foto.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">12:30 – 2:00</div>
+            <div class="tlico">🔒</div>
+            <div class="tllb"><div class="tlname">Cierre del corredor</div><div class="tlhint">Levantamiento de material</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Cierre final</span>
+            <ul>
+              <li><strong>Prohibido retirar material antes de las 2:00 pm.</strong></li>
+              <li>Apoyo activo en levantamiento de cerramiento.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="tli" onclick="tog(this)">
+          <div class="tldot"></div>
+          <div class="tlh">
+            <div class="tltime">2:00 pm</div>
+            <div class="tlico">🏆</div>
+            <div class="tllb"><div class="tlname">Fin jornada #3 · Jornada doble completada</div><div class="tlhint">Reportes post-jornada</div></div>
+            <div class="tlarr">▼</div>
+          </div>
+          <div class="tldet"><div class="tlinn">
+            <span class="tlbadge">Jornada doble ✓</span>
+            <ul>
+              <li><strong>14:00</strong> → foto libreta firmada.</li>
+              <li><strong>16:00</strong> → reporte 523.</li>
+              <li><strong>17:30</strong> → revisión HV + informe de varios.</li>
+            </ul>
+          </div></div>
+        </div>
+
       </div>
-      <p style="color:var(--stardust); font-size:15px; line-height:1.7; margin-bottom:12px;">
-        Reconocimiento del <strong style="color:var(--nebula-pink)">corredor</strong> y labores de los Guardianes.
-      </p>
-      <ul class="bullets">
-        <li><span class="bullet-dot pink"></span>Los servidores deben de movilizarse en <strong>grupos grandes</strong></li>
-        <li><span class="bullet-dot pink"></span>Mantener <strong>supervisión constante</strong></li>
-        <li><span class="bullet-dot pink"></span>Son <strong>menores de edad</strong> — nosotros somos responsables</li>
+    </div>
+
+  </div><!-- end sched -->
+
+  <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
+
+  <!-- NOVEDAD GENERAL -->
+  <div class="sl rv">📡 Novedad General</div>
+  <div class="two rv">
+    <div class="card" style="--ca:linear-gradient(90deg,var(--cyan),var(--purple));">
+      <div class="ch">
+        <div class="ci" style="background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(123,47,255,.2));">📋</div>
+        <div><div class="ct">Ambas jornadas</div><div class="cs">22 y 23 de Marzo</div></div>
+      </div>
+      <ul class="bl">
+        <li><span class="bd bc"></span>Los servidores ya <strong>no se desplazan</strong> — tienen un <strong>punto fijo asignado</strong> en el corredor.</li>
+        <li><span class="bd bc"></span>Siguen trabajando en <strong>grupos</strong>, pero sin recorrido de punto A a B.</li>
+        <li><span class="bd bc"></span>La supervisión constante sigue siendo responsabilidad de los Guardianes.</li>
       </ul>
     </div>
-
-  </div>
-
-  <!-- NOVEDAD ESPECÍFICA -->
-  <div class="card" style="--card-accent: linear-gradient(90deg, var(--star-gold), var(--plasma-orange)); --card-glow: rgba(245,200,66,0.06);">
-    <div class="card-header">
-      <div class="card-icon" style="background: linear-gradient(135deg, rgba(245,200,66,0.2), rgba(255,106,26,0.2));">📋</div>
-      <div>
-        <div class="card-title" style="color:var(--star-gold);">Novedad Específica</div>
-        <div class="card-subtitle"></div>
+    <div class="card" style="--ca:linear-gradient(90deg,var(--pink),var(--purple));">
+      <div class="ch">
+        <div class="ci" style="background:linear-gradient(135deg,rgba(255,61,166,.2),rgba(123,47,255,.2));">🌤️</div>
+        <div><div class="ct" style="color:var(--pink);">Festivo · 23 Marzo</div><div class="cs">Lunes festivo</div></div>
       </div>
-    </div>
-    <div class="two-col" style="gap:12px; margin-top:4px;">
-      <div style="background:rgba(245,200,66,0.05); border:1px solid rgba(245,200,66,0.2); border-radius:12px; padding:16px;">
-        <div style="font-size:28px; margin-bottom:8px;">🖼️</div>
-        <div style="font-family:'Orbitron',sans-serif; font-size:10px; color:var(--star-gold); letter-spacing:1.5px; margin-bottom:6px;">IMAGEN REPRESENTATIVA</div>
-        <p style="font-size:14px; color:var(--stardust); line-height:1.5;">Llevar la imagen impresa del <strong style="color:white">personaje asignado</strong>.</p>
-      </div>
-      <div style="background:rgba(255,106,26,0.05); border:1px solid rgba(255,106,26,0.2); border-radius:12px; padding:16px;">
-        <div style="font-size:28px; margin-bottom:8px;">❓</div>
-        <div style="font-family:'Orbitron',sans-serif; font-size:10px; color:var(--plasma-orange); letter-spacing:1.5px; margin-bottom:6px;">CUESTIONARIO</div>
-        <p style="font-size:14px; color:var(--stardust); line-height:1.5;">Apoyar a los servidores con las <strong style="color:white">preguntas del recorrido</strong>.</p>
-      </div>
+      <ul class="bl">
+        <li><span class="bd bp"></span>Mayor afluencia de ciudadanos en festivo.</li>
+        <li><span class="bd bp"></span>Mismo horario: <strong>7:30 am – 2:00 pm.</strong></li>
+        <li><span class="bd bp"></span>Mismos reportes y horarios límite que el día 22.</li>
+      </ul>
     </div>
   </div>
 
-  <!-- DIVIDER -->
-  <div class="cosmic-divider">
-    <div class="line"></div>
-    <div class="dot"></div>
-    <div class="line"></div>
+  <!-- DRIVE -->
+  <div class="sl rv" style="margin-top:8px;">📂 Seguimiento Drive · Asistencia</div>
+  <div class="card rv" style="--ca:linear-gradient(90deg,var(--mint),var(--cyan));">
+    <div class="ch">
+      <div class="ci" style="background:linear-gradient(135deg,rgba(61,255,160,.2),rgba(0,229,255,.2));">📊</div>
+      <div><div class="ct" style="color:var(--mint);">Drive M1 · Registro de asistencia y de hoja de valoracion</div><div class="cs">Código según asistencia del servidor</div></div>
+    </div>
+    <div class="code-row">
+      <div class="cbadge c57">57</div>
+      <div style="font-size:14px;color:var(--dust);">Servidor social <strong style="color:var(--orange);">NO asistió</strong></div>
+    </div>
+    <div class="code-row" style="margin-top:8px;">
+      <div class="cbadge c58">58</div>
+      <div style="font-size:14px;color:var(--dust);">Servidor social <strong style="color:var(--mint);">SÍ asistió</strong></div>
+    </div>
+    <div class="callout cinfo" style="margin-top:14px;">
+      <span class="cico">💡</span>
+      <span class="ctxt">El drive solo permite <strong>"57" y "58"</strong>, Por lo que si intentan agregar algo mas mostrara una alerta.</span>
+    </div>
+    <a href="https://docs.google.com/spreadsheets/d/1FqN_S_XNdC6NYwOa0jXA5UrUljUf4oeA6HPwllNnj9s/edit?gid=0#gid=0" target="_blank" class="drive-row">
+      <span style="font-size:28px;">📎</span>
+      <div class="drive-info">
+        <div class="drive-title2">Seguimiento Drive M1</div>
+        <div class="drive-desc2">Hoja de asistencia Módulo 1 — Sur 5</div>
+      </div>
+      <span class="drive-btn2">Abrir →</span>
+    </a>
   </div>
 
-  <!-- ROLES SECTION -->
-  <div class="section-label">🎭 Distribución de Roles</div>
-  <div style="font-family:'Orbitron',sans-serif; font-size:22px; font-weight:900; color:white; margin-bottom:20px;">
-    El Equipo <span style="background: linear-gradient(90deg,var(--aurora-cyan),var(--nebula-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Guardián</span>
+  <div class="callout cwarn rv">
+    <span class="cico">📄</span>
+    <span class="ctxt"><strong>Hoja de valoración:</strong> aún no disponible para estas jornadas. Se informará cuando esté lista.</span>
   </div>
 
-  <div class="roles-grid">
-    <div class="role-card role-0">
-      <div class="role-emoji">🧭</div>
-      <div class="role-info">
-        <div class="role-title">Líder de Ruta</div>
-        <div class="role-name">Buford Van Stomm</div>
-      </div>
-    </div>
-    <div class="role-card role-1">
-      <div class="role-emoji">🧑‍🚀</div>
-      <div class="role-info">
-        <div class="role-title">Gamma</div>
-        <div class="role-name">Baljeet Tjinder</div>
-      </div>
-    </div>
-    <div class="role-card role-2">
-      <div class="role-emoji">🏃‍♀️</div>
-      <div class="role-info">
-        <div class="role-title">Tango</div>
-        <div class="role-name">Candace Flynn</div>
-      </div>
-    </div>
-    <div class="role-card role-3">
-      <div class="role-emoji">⚡</div>
-      <div class="role-info">
-        <div class="role-title">Reacción A</div>
-        <div class="role-name">Phineas Flynn</div>
-      </div>
-    </div>
-    <div class="role-card role-3">
-      <div class="role-emoji">⚡⚡</div>
-      <div class="role-info">
-        <div class="role-title">Reacción B</div>
-        <div class="role-name">Ferb Fletcher</div>
-      </div>
-    </div>
-    <div class="role-card role-4">
-      <div class="role-emoji">🧠</div>
-      <div class="role-info">
-        <div class="role-title">Omega</div>
-        <div class="role-name">Isabella García Shapiro</div>
-      </div>
-    </div>
-    <div class="role-card role-5">
-      <div class="role-emoji">🎒</div>
-      <div class="role-info">
-        <div class="role-title">El mejor Beta Sur5</div>
-        <div class="role-name">Perry el Ornitorrinco</div>
-      </div>
-    </div>
-    <div class="role-card role-6">
-      <div class="role-emoji">🛡️</div>
-      <div class="role-info">
-        <div class="role-title">Guardián de Tramo</div>
-        <div class="role-name">Dr. Heinz Doofenshmirtz</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div class="cosmic-divider" style="margin:36px 0;">
-    <div class="line"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="line"></div>
-  </div>
-
-  <!-- PRIMERA JORNADA EN RUTA -->
-  <div class="section-label">🌅 Primera Jornada en Ruta</div>
-  <div class="card" style="--card-accent: linear-gradient(90deg, #3dffa0, #00e5ff); --card-glow: rgba(61,255,160,0.06);">
-    <div class="card-header">
-      <div class="card-icon" style="background: linear-gradient(135deg, rgba(61,255,160,0.2), rgba(0,229,255,0.2));">🌱</div>
-      <div>
-        <div class="card-title" style="color:#3dffa0;">Bienvenida & Motivación</div>
-        <div class="card-subtitle">Es su primera vez — hazlos sentir en casa</div>
-      </div>
-    </div>
-    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:12px;">
-      <div style="display:flex; gap:10px; align-items:flex-start; background:rgba(61,255,160,0.04); border:1px solid rgba(61,255,160,0.15); border-radius:12px; padding:14px;">
-        <span style="font-size:22px;">👋</span>
-        <span style="font-size:14px; color:var(--stardust); line-height:1.5;">Saludar y <strong style="color:#3dffa0;">presentarse</strong> con el grupo</span>
-      </div>
-      <div style="display:flex; gap:10px; align-items:flex-start; background:rgba(61,255,160,0.04); border:1px solid rgba(61,255,160,0.15); border-radius:12px; padding:14px;">
-        <span style="font-size:22px;">💪</span>
-        <span style="font-size:14px; color:var(--stardust); line-height:1.5;">Mostrar <strong style="color:#3dffa0;">interés y disposición</strong> para acompañarlos</span>
-      </div>
-      <div style="display:flex; gap:10px; align-items:flex-start; background:rgba(61,255,160,0.04); border:1px solid rgba(61,255,160,0.15); border-radius:12px; padding:14px;">
-        <span style="font-size:22px;">🎉</span>
-        <span style="font-size:14px; color:var(--stardust); line-height:1.5;">Hacerlos sentir <strong style="color:#3dffa0;">bienvenidos y motivados</strong></span>
-      </div>
-      <div style="display:flex; gap:10px; align-items:flex-start; background:rgba(61,255,160,0.04); border:1px solid rgba(61,255,160,0.15); border-radius:12px; padding:14px;">
-        <span style="font-size:22px;">🔒</span>
-        <span style="font-size:14px; color:var(--stardust); line-height:1.5;"><strong style="color:#3dffa0;">Seguridad y bienestar</strong> como prioridad absoluta</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- OBJECTIVE BANNER -->
-  <div class="objective-banner">
-    <span class="obj-check">✅</span>
-    <p class="obj-text">
-      Nuestro objetivo es que los servidores vivan una experiencia 
-      <strong>positiva</strong>, <strong>segura</strong> y <strong>enriquecedora</strong> 
-      durante su proceso de servicio social.
-    </p>
+  <!-- FINAL -->
+  <div class="final rv" style="margin-top:24px;">
+    <span class="ficon">🚀</span>
+    <p>Jornada doble — dos días, <strong>una sola actitud</strong>.<br>
+    Recuerden: el objetivo es que cada servidor social viva una experiencia <strong>positiva</strong>, <strong>segura</strong> y <strong>enriquecedora</strong>.<br>
+    Su organización y disposición <strong>hacen la diferencia</strong> en el corredor.</p>
   </div>
 
   <!-- FOOTER -->
@@ -763,68 +665,35 @@
 </div>
 
 <script>
-// STARFIELD
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-let stars = [];
+/* STARS */
+const cv=document.getElementById('stars'),cx=cv.getContext('2d');let st=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight;}rsz();addEventListener('resize',rsz);
+for(let i=0;i<240;i++)st.push({x:Math.random()*99999,y:Math.random()*99999,r:Math.random()*1.4+.2,h:Math.random()>.82?(Math.random()*70+170):0});
+let T=0;(function draw(){cx.clearRect(0,0,cv.width,cv.height);T+=.009;
+  st.forEach((s,i)=>{const a=.25+.75*Math.abs(Math.sin(T+i*.27));
+    cx.beginPath();cx.arc(s.x%cv.width,s.y%cv.height,s.r,0,Math.PI*2);
+    cx.fillStyle=s.h?`hsla(${s.h},100%,78%,${a})`:`rgba(255,255,255,${a*.88})`;cx.fill();});
+  requestAnimationFrame(draw);})();
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+/* TABS */
+function switchTab(id){
+  document.querySelectorAll('.tpanel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  document.querySelectorAll('.tbtn')[id==='d1'?0:1].classList.add('on');
+  document.querySelectorAll('.tli').forEach(i=>i.classList.remove('open'));
 }
-resize();
-window.addEventListener('resize', resize);
 
-function createStars(n) {
-  stars = [];
-  for (let i = 0; i < n; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.2,
-      alpha: Math.random(),
-      speed: Math.random() * 0.5 + 0.2,
-      hue: Math.random() > 0.8 ? (Math.random() * 60 + 180) : 0 // some colored stars
-    });
-  }
+/* TOGGLE */
+function tog(el){
+  const was=el.classList.contains('open');
+  el.closest('.tpanel').querySelectorAll('.tli').forEach(i=>i.classList.remove('open'));
+  if(!was)el.classList.add('open');
 }
-createStars(220);
 
-let t = 0;
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  t += 0.008;
-  stars.forEach((s, i) => {
-    const a = 0.3 + 0.7 * Math.abs(Math.sin(t + i * 0.3));
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    if (s.hue > 0) {
-      ctx.fillStyle = `hsla(${s.hue}, 100%, 80%, ${a})`;
-    } else {
-      ctx.fillStyle = `rgba(255,255,255,${a * 0.9})`;
-    }
-    ctx.fill();
-  });
-  requestAnimationFrame(drawStars);
-}
-drawStars();
-
-// SCROLL FADE IN
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.card, .role-card, .objective-banner').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
+/* SCROLL REVEAL */
+const ob=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');ob.unobserve(x.target);}});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ob.observe(el));
 </script>
 </body>
 </html>
