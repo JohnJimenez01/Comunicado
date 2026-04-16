@@ -71,10 +71,12 @@
 
   .bl{list-style:none;margin-top:6px;}
   .bl li{display:flex;align-items:flex-start;gap:9px;padding:6px 0;
-    border-bottom:1px solid rgba(255,255,255,.04);color:var(--dust);font-size:13px;line-height:1.5;}
+    border-bottom:1px solid rgba(255,255,255,.04);color:var(--dust);font-size:13px;line-height:1.55;}
   .bl li:last-child{border-bottom:none;}
   .bd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;background:var(--accent);opacity:.7;}
   .bw{background:var(--warn);opacity:.8;}
+  .bg{background:var(--gold);opacity:.8;}
+  .br{background:#e05c5c;opacity:.85;}
 
   .rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:8px;}
   @media(max-width:480px){.rep-grid{grid-template-columns:repeat(2,1fr);}}
@@ -127,41 +129,17 @@
     flex-shrink:0;transition:border-color .25s;}
   .drive-row:hover .drive-btn{border-color:var(--brdh);}
 
-  /* ── COMO 54 ── */
-  .c54-box{
+  /* ALERTA ROJA */
+  .alert-box{
     position:relative;overflow:hidden;
-    border-radius:16px;padding:30px 28px;margin-bottom:14px;
-    background:rgba(201,169,110,.05);
-    border:1px solid rgba(201,169,110,.22);}
-  .c54-box::before{content:'';position:absolute;inset:0;
-    background:radial-gradient(ellipse 65% 50% at 50% 50%,rgba(201,169,110,.06) 0%,transparent 70%);
-    pointer-events:none;}
-  .c54-title{
-    font-family:'Orbitron',sans-serif;font-size:clamp(13px,2.6vw,18px);font-weight:900;
-    color:var(--neon);letter-spacing:1.5px;margin-bottom:4px;
-    text-shadow:0 0 22px rgba(201,169,110,.35),0 0 45px rgba(180,220,255,.12);}
-  .c54-sub{font-size:11.5px;color:var(--muted);margin-bottom:22px;letter-spacing:.4px;}
-  .c54-item{
-    display:flex;gap:14px;align-items:flex-start;
-    background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-    border-radius:10px;padding:14px 16px;margin-bottom:10px;
-    position:relative;overflow:hidden;transition:border-color .25s;}
-  .c54-item::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;
-    background:var(--gold);}
-  .c54-item:hover{border-color:rgba(201,169,110,.22);}
-  .c54-num{font-family:'Orbitron',sans-serif;font-size:17px;font-weight:900;
-    color:var(--gold);flex-shrink:0;min-width:24px;
-    text-shadow:0 0 12px rgba(201,169,110,.35);}
-  .c54-q{font-size:13.5px;font-weight:600;color:var(--neon);line-height:1.45;margin-bottom:4px;
-    text-shadow:0 0 8px rgba(180,220,255,.1);}
-  .c54-hint{font-size:11.5px;color:var(--muted);line-height:1.5;}
-  .c54-envio{
-    display:flex;align-items:center;gap:11px;margin-top:20px;
-    background:rgba(142,175,212,.05);border:1px solid rgba(142,175,212,.18);
-    border-radius:10px;padding:12px 16px;}
-  .c54-envio-ico{font-size:20px;flex-shrink:0;}
-  .c54-envio-txt{font-size:12.5px;color:var(--dust);line-height:1.55;}
-  .c54-envio-txt strong{color:var(--neon);}
+    border-radius:14px;padding:22px 24px;margin-bottom:14px;
+    background:rgba(224,92,92,.07);
+    border:1px solid rgba(224,92,92,.28);}
+  .alert-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,rgba(224,92,92,.5),rgba(224,92,92,.2),transparent);}
+  .alert-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;color:#f0a0a0;margin-bottom:10px;
+    text-shadow:0 0 12px rgba(224,92,92,.35);}
 
   .final{text-align:center;border:1px solid rgba(255,255,255,.06);border-radius:14px;
     padding:26px 20px;margin-top:6px;position:relative;overflow:hidden;}
@@ -187,6 +165,7 @@
 
 <div class="page">
 
+  <!-- HEADER -->
   <div class="hdr rv">
     <div class="hbadge">⬡ Comunicado SS · Sur 5</div>
     <h1 class="htitle">JORNADA EN RUTA<br>#6</h1>
@@ -203,38 +182,69 @@
     </div>
   </div>
 
+  <!-- GREETING -->
   <div class="card rv" style="text-align:center;">
     <p style="font-size:clamp(13px,2.3vw,18px);font-weight:300;font-style:italic;color:var(--neon);opacity:.9;">
       ¡Muy buen día, caballeros y señoritas!
     </p>
   </div>
 
+  <!-- REPORTES — sin fotos/videos de actividades -->
   <div class="sl rv">Reportes del día</div>
   <div class="rep-grid rv">
     <div class="rep-item"><span class="riico">📋</span><div class="ritime">08:30</div><div class="rilabel">Asistencia drive<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
-    <div class="rep-item"><span class="riico">🎥</span><div class="ritime">10:30</div><div class="rilabel">Actividad 1ª entrega<br><span style="opacity:.5;font-size:10px;">(2) video + (2) foto</span></div></div>
-    <div class="rep-item"><span class="riico">📷</span><div class="ritime">12:30</div><div class="rilabel">Actividad 2ª entrega<br><span style="opacity:.5;font-size:10px;">(2) video + (2) foto</span></div></div>
     <div class="rep-item"><span class="riico">📔</span><div class="ritime">14:00</div><div class="rilabel">Foto libreta firmada<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
     <div class="rep-item"><span class="riico">📊</span><div class="ritime">16:00</div><div class="rilabel">Reporte 523<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
-    <div class="rep-item"><span class="riico">📁</span><div class="ritime">17:30</div><div class="rilabel">Revisión HV<br><span style="opacity:.5;font-size:10px;">Guardián de tramo</span></div></div>
   </div>
 
   <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
 
-  <div class="sl rv">Novedad General · Jornada #6</div>
+  <!-- NOVEDADES -->
+  <div class="sl rv">Novedades · Jornada #6</div>
+
+  <!-- NOVEDAD 1 — Grabaciones -->
+  <div class="alert-box rv">
+    <div class="alert-title">🚫 Grabaciones y fotografías — aplica desde ya</div>
+    <ul class="bl" style="margin-top:0;">
+      <li><span class="bd br"></span>Nadie del corredor, a excepción del equipo Alfa 12, puede grabar o fotografiar a los Servidores Sociales durante la jornada.</li>
+      <li><span class="bd br"></span>Los propios Servidores Sociales tampoco pueden grabar sus actividades, especialmente cuando en el punto hay menores de edad participando.</li>
+      <li><span class="bd br"></span>El reporte de fotos y videos de actividades queda eliminado a partir de esta jornada. No volver a solicitarlo.</li>
+    </ul>
+  </div>
+
+  <!-- NOVEDAD 2 — Cartelera -->
+  <div class="card rv" style="--ca:linear-gradient(90deg,rgba(201,169,110,.4),rgba(142,175,212,.3));">
+    <div class="ch">
+      <div class="ci">🪧</div>
+      <div><div class="ct">Cartelera con campaña</div><div class="cs">Obligatoria desde esta jornada</div></div>
+    </div>
+    <ul class="bl">
+      <li><span class="bd bg"></span>Cada servidor debe llevar una <strong>cartelera con una campaña o actividad</strong> preparada desde casa.</li>
+      <li><span class="bd bg"></span>Si el material del IDRD no ha llegado al punto, el servidor <strong>saca la cartelera y ejecuta su campaña</strong> de inmediato.</li>
+      <li><span class="bd bg"></span>En ningún momento un servidor puede estar <strong>sin función alguna</strong> en el corredor.</li>
+      <li><span class="bd bg"></span>Si el servidor no tiene su cartelera, el Guardián lo <strong>ubica como punto fijo</strong> — no queda sin asignación.</li>
+      <li><span class="bd bg"></span>Recordar que los servidores también deben llevar <strong>material de apoyo</strong> para sus actividades.</li>
+    </ul>
+    <div class="callout" style="--clc:var(--warn);">
+      <span class="cico">⚠️</span>
+      <span class="ctxt">La cartelera aplica <strong>antes y después</strong> de que llegue el material del IDRD. No hay excusa para estar sin función.</span>
+    </div>
+  </div>
+
+  <!-- NOVEDAD 3 — Conducta -->
   <div class="card rv" style="--ca:linear-gradient(90deg,rgba(201,80,80,.35),rgba(142,175,212,.25));">
     <div class="ch">
       <div class="ci">⚠️</div>
       <div><div class="ct">Conducta en servicio</div><div class="cs">Aplica durante toda la jornada</div></div>
     </div>
     <ul class="bl">
-      <li><span class="bd bw"></span>Los servidores deben estar ejecutando su actividad en todo momento. No pueden estar jugando entre ellos ni conversando de forma prolongada sin atender a los usuarios.</li>
+      <li><span class="bd bw"></span>Los servidores deben estar ejecutando su actividad en todo momento. No pueden jugar entre ellos ni conversar de forma prolongada sin atender usuarios.</li>
       <li><span class="bd bw"></span><strong>561</strong> del uso de celulares, audífonos, parlantes o cualquier aparato electrónico durante la prestación del servicio.</li>
       <li><span class="bd bw"></span>Ningún servidor puede verse sentado fuera de su horario de descanso asignado.</li>
-      <li><span class="bd bw"></span>El Guardián encargado debe hacer seguimiento activo en el punto y registrar cualquier novedad en la libreta.</li>
     </ul>
   </div>
 
+  <!-- DRIVE -->
   <div class="sl rv">Seguimiento Drive · Asistencia</div>
   <div class="card rv">
     <div class="ch">
@@ -266,105 +276,21 @@
 
   <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
 
-  <div class="sl rv">Reglamento SSEO · Para tener presente</div>
-  <div class="rv">
-
-    <div class="reg-item" onclick="togReg(this)">
-      <div class="reg-head"><div class="reg-num">01</div>
-        <div class="reg-title">Conducta y uso del celular</div>
-        <div class="reg-tag">Falta grave</div><div class="reg-arr">▾</div></div>
-      <div class="reg-body"><div class="reg-inner">
-        <p>El uso de celular o audífonos durante el servicio es <strong>falta leve</strong> la primera vez y <strong>falta grave</strong> si es recurrente. Permanecer sentado sin justificación, jugar entre compañeros o mostrar desinterés también son faltas graves, registradas en la libreta con firma del Guardián y del servidor.</p>
-      </div></div>
-    </div>
-
-    <div class="reg-item" onclick="togReg(this)">
-      <div class="reg-head"><div class="reg-num">02</div>
-        <div class="reg-title">Descansos</div>
-        <div class="reg-tag">Planificados</div><div class="reg-arr">▾</div></div>
-      <div class="reg-body"><div class="reg-inner">
-        <p>Dos descansos de <strong>45 minutos</strong> por jornada, asignados por el Beta. <strong>Turno A:</strong> 8:30 – 9:15 am y 11:00 – 11:45 am. <strong>Turno B:</strong> 9:15 – 10:00 am y 11:45 am – 12:30 pm. Regresar tarde al punto es falta leve, grave o muy grave según los minutos.</p>
-      </div></div>
-    </div>
-
-    <div class="reg-item" onclick="togReg(this)">
-      <div class="reg-head"><div class="reg-num">03</div>
-        <div class="reg-title">Uniforme y presentación</div>
-        <div class="reg-tag">Obligatorio</div><div class="reg-arr">▾</div></div>
-      <div class="reg-body"><div class="reg-inner">
-        <p>Jean azul sin rotos, camibuso negro o blanco debajo de la camiseta, camiseta blanca por dentro del pantalón, gorra del IDRD recta. <strong>No se permiten maletas.</strong> Uñas cortas, sin uñas acrílicas ni aretes grandes. La gorra se retira solo en descansos y después de las <strong>14:00 horas.</strong></p>
-      </div></div>
-    </div>
-
-    <div class="reg-item" onclick="togReg(this)">
-      <div class="reg-head"><div class="reg-num">04</div>
-        <div class="reg-title">Faltas y consecuencias</div>
-        <div class="reg-tag">Escala</div><div class="reg-arr">▾</div></div>
-      <div class="reg-body"><div class="reg-inner">
-        <p><strong>Leve:</strong> llamado verbal en libreta. No genera cancelación.<br><br>
-        <strong>Grave:</strong> llamado escrito con compromiso firmado por el acudiente. No genera cancelación.<br><br>
-        <strong>Muy grave:</strong> retiro definitivo con reporte al colegio. Dos faltas graves o cuatro leves acumuladas equivalen a una muy grave.</p>
-      </div></div>
-    </div>
-
-    <div class="reg-item" onclick="togReg(this)">
-      <div class="reg-head"><div class="reg-num">05</div>
-        <div class="reg-title">Reporte de llegada a casa</div>
-        <div class="reg-tag">Obligatorio</div><div class="reg-arr">▾</div></div>
-      <div class="reg-body"><div class="reg-inner">
-        <p>El servidor debe reportar llegada segura al hogar en máximo <strong>1 hora 30 minutos</strong> tras finalizar la jornada. Si no hay reporte, el Guardián realiza la llamada de verificación.</p>
-      </div></div>
-    </div>
-
-  </div>
-
-  <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
-
-  <!-- COMO 54 -->
-  <div class="c54-box rv">
-    <div class="c54-title">Como 54 del comunicado me van a confirmar</div>
-    <div class="c54-sub">Responder y enviar al interno verde antes de la jornada del 19 de abril</div>
-
-    <div class="c54-item">
-      <div class="c54-num">1</div>
-      <div>
-        <div class="c54-q">Propuesta de actividad deportiva para el corredor</div>
-        <div class="c54-hint">Indica una actividad deportiva que los servidores puedan realizar con los usuarios en el corredor. Debe ser algo que ellos mismos puedan preparar y traer desde casa, sin depender de material del IDRD. Incluir: nombre de la actividad, cómo se ejecuta y qué traen los servidores.</div>
-      </div>
-    </div>
-
-    <div class="c54-item">
-      <div class="c54-num">2</div>
-      <div>
-        <div class="c54-q">¿Qué debe hacer el Guardián si un servidor social se enferma durante la jornada?</div>
-        <div class="c54-hint">Describe el protocolo paso a paso según el reglamento SSEO: a quién se contacta, qué se le exige al servidor, cómo se gestionan las horas y qué pasa si no presenta la excusa correspondiente.</div>
-      </div>
-    </div>
-
-    <div class="c54-envio">
-      <div class="c54-envio-ico">📩</div>
-      <div class="c54-envio-txt">Enviar las dos respuestas al <strong>interno verde</strong> antes de la jornada del <strong>19 de abril.</strong> Respuestas incompletas no serán tenidas en cuenta.</div>
-    </div>
-  </div>
-
-  <!-- BOTÓN CONFIRMACIÓN LECTURA -->
-  <div class="rv" style="text-align:center;margin-bottom:14px;">
+  <!-- BOTÓN CONFIRMACIÓN -->
+  <div class="rv" style="text-align:center;margin-top:28px;margin-bottom:14px;">
     <p style="font-size:11.5px;color:var(--muted);margin-bottom:14px;letter-spacing:.3px;">
-      ¿Ya leíste el comunicado? Confirma tu lectura y 54 al Beta.
+      ¿Ya leíste el comunicado?.
     </p>
     <a id="btnWA"
        href="https://wa.me/573232043421?text=✅%20Leí%20el%20comunicado%20Jornada%20%236%20–%2019%20de%20abril."
        target="_blank"
        onclick="confirmRead()"
-       style="
-         display:inline-flex;align-items:center;gap:10px;
+       style="display:inline-flex;align-items:center;gap:10px;
          padding:13px 28px;border-radius:50px;
-         background:rgba(37,211,102,.1);
-         border:1px solid rgba(37,211,102,.35);
+         background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.35);
          color:#e8f4ff;font-family:'Orbitron',sans-serif;
          font-size:10.5px;letter-spacing:2px;text-transform:uppercase;
-         text-decoration:none;transition:all .25s;
-         text-shadow:0 0 10px rgba(180,220,255,.15);">
+         text-decoration:none;transition:all .25s;">
       <span style="font-size:20px;">💬</span>
       <span id="btnLabel">Confirmar lectura</span>
     </a>
@@ -373,9 +299,10 @@
     </p>
   </div>
 
+  <!-- FINAL -->
   <div class="final rv">
     <span class="ficon">⬡</span>
-    <p><strong>Presencia, actitud y servicio.</strong><br>
+    <p><strong>presencia, actitud y servicio.</strong><br>
     Cada servidor activo en su punto hace la diferencia en el corredor.</p>
   </div>
 
@@ -401,35 +328,26 @@ let T=0;
   });
   requestAnimationFrame(draw);
 })();
+function confirmRead(){
+  localStorage.setItem('read_j6_19abril','1');
+  const btn=document.getElementById('btnWA');
+  document.getElementById('btnLabel').textContent='Confirmación enviada';
+  btn.style.opacity='.4';btn.style.pointerEvents='none';
+  document.getElementById('btnDone').style.display='block';
+}
+window.addEventListener('load',function(){
+  if(localStorage.getItem('read_j6_19abril')){
+    const btn=document.getElementById('btnWA');
+    document.getElementById('btnLabel').textContent='Ya confirmaste tu lectura';
+    btn.style.opacity='.4';btn.style.pointerEvents='none';
+    document.getElementById('btnDone').style.display='block';
+  }
+});
 function togReg(el){
   const was=el.classList.contains('open');
   document.querySelectorAll('.reg-item').forEach(i=>i.classList.remove('open'));
   if(!was)el.classList.add('open');
 }
-function confirmRead(){
-  const btn = document.getElementById('btnWA');
-  const done = document.getElementById('btnDone');
-  const label = document.getElementById('btnLabel');
-  // Mark as read in localStorage so it persists on this device
-  localStorage.setItem('read_j6_19abril','1');
-  label.textContent = 'Confirmación enviada';
-  btn.style.opacity = '.5';
-  btn.style.pointerEvents = 'none';
-  done.style.display = 'block';
-}
-// On load: if already confirmed on this device, show done state
-window.addEventListener('load', function(){
-  if(localStorage.getItem('read_j6_19abril')){
-    const btn = document.getElementById('btnWA');
-    const done = document.getElementById('btnDone');
-    const label = document.getElementById('btnLabel');
-    label.textContent = 'Ya confirmaste tu lectura';
-    btn.style.opacity = '.4';
-    btn.style.pointerEvents = 'none';
-    done.style.display = 'block';
-  }
-});
-
 const ob=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');ob.unobserve(x.target);}});},{threshold:.07});
 document.querySelectorAll('.rv').forEach(el=>ob.observe(el));
 </script>
