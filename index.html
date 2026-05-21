@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comunicado – Retroalimentación & Recuperación 1</title>
+<title>Comunicado – Recuperación 2 · 24 Mayo 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -18,7 +18,6 @@
     --gold:   #c9a96e;
     --warn:   #c97a4a;
     --ok:     #6aaa8a;
-    --lila:   #b89ec9;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--dark);font-family:'Exo 2',sans-serif;color:var(--neon);overflow-x:hidden;}
@@ -33,25 +32,19 @@
   .rv{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
   .rv.in{opacity:1;transform:translateY(0);}
 
-  /* HEADER */
   .hdr{text-align:center;margin-bottom:40px;}
-  .hbadge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(142,175,212,.3);
+  .hbadge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(106,170,138,.3);
     border-radius:40px;padding:5px 20px;font-family:'Orbitron',sans-serif;
-    font-size:9px;letter-spacing:3px;color:var(--accent);margin-bottom:16px;}
-  .htitle{font-family:'Orbitron',sans-serif;font-size:clamp(18px,4vw,42px);font-weight:900;
+    font-size:9px;letter-spacing:3px;color:var(--ok);margin-bottom:16px;}
+  .htitle{font-family:'Orbitron',sans-serif;font-size:clamp(20px,4.5vw,46px);font-weight:900;
     line-height:1.05;color:var(--neon);letter-spacing:1px;margin-bottom:7px;
     text-shadow:0 0 40px rgba(180,220,255,.35),0 0 80px rgba(140,180,255,.15);}
   .hsub{font-family:'Orbitron',sans-serif;font-size:clamp(9px,1.5vw,11px);color:var(--muted);letter-spacing:3px;}
   .hcorredor{margin-top:12px;display:inline-block;border:1px solid rgba(201,169,110,.22);
     border-radius:8px;padding:6px 16px;font-size:12px;color:var(--gold);letter-spacing:.7px;}
-
-  /* PILLS */
-  .dpills{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px;}
-  .dpill{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;
-    border-radius:50px;font-weight:700;font-size:13px;transition:transform .25s;}
-  .dpill:hover{transform:translateY(-2px);}
-  .dp1{border:1px solid rgba(142,175,212,.28);color:var(--neon);background:rgba(142,175,212,.05);}
-  .dp2{border:1px solid rgba(106,170,138,.28);color:var(--neon);background:rgba(106,170,138,.05);}
+  .dpill{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:11px 22px;
+    border-radius:50px;font-weight:700;font-size:14px;
+    border:1px solid rgba(106,170,138,.28);color:var(--neon);background:rgba(106,170,138,.05);}
   .pnum{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;opacity:.55;text-transform:uppercase;}
 
   .dv{display:flex;align-items:center;gap:10px;margin:22px 0;}
@@ -91,41 +84,37 @@
   .callout .ctxt{font-size:12.5px;color:var(--dust);line-height:1.55;}
   .callout .ctxt strong{color:var(--neon);}
 
-  /* BLOQUE DÍA — contenedor con línea de color lateral */
-  .day-block{
-    border-radius:16px;padding:26px 28px;margin-bottom:14px;
-    position:relative;overflow:hidden;}
-  .day-block::after{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
-    background:var(--db-c,var(--accent));border-radius:3px 0 0 3px;}
-  .db1{background:rgba(142,175,212,.05);border:1px solid rgba(142,175,212,.18);--db-c:var(--accent);}
-  .db2{background:rgba(106,170,138,.05);border:1px solid rgba(106,170,138,.18);--db-c:var(--ok);}
-  .day-label{font-family:'Orbitron',sans-serif;font-size:8.5px;letter-spacing:2.5px;
-    text-transform:uppercase;color:var(--db-c,var(--accent));margin-bottom:5px;}
-  .day-title{font-family:'Orbitron',sans-serif;font-size:clamp(13px,2.5vw,18px);font-weight:900;
-    color:var(--neon);margin-bottom:3px;text-shadow:0 0 12px rgba(180,220,255,.12);}
-  .day-date{font-size:12px;color:var(--muted);margin-bottom:14px;}
+  /* PUNTO DESTACADO */
+  .punto-box{
+    display:flex;align-items:flex-start;gap:14px;
+    background:rgba(106,170,138,.06);border:1px solid rgba(106,170,138,.25);
+    border-radius:14px;padding:18px 22px;margin-bottom:14px;position:relative;overflow:hidden;}
+  .punto-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,rgba(106,170,138,.5),rgba(142,175,212,.25),transparent);}
+  .punto-ico{font-size:26px;flex-shrink:0;margin-top:2px;}
+  .punto-label{font-family:'Orbitron',sans-serif;font-size:8.5px;letter-spacing:2.5px;
+    color:var(--ok);text-transform:uppercase;margin-bottom:5px;}
+  .punto-name{font-size:15px;font-weight:600;color:var(--neon);margin-bottom:4px;}
+  .punto-desc{font-size:12.5px;color:var(--dust);line-height:1.55;}
 
-  /* BANNER SIN SERVIDORES */
-  .no-ss{
-    border-radius:12px;padding:18px 20px;
-    background:rgba(180,40,40,.07);border:1px solid rgba(220,80,80,.2);
-    display:flex;align-items:flex-start;gap:12px;margin-top:4px;}
-  .no-ss-ico{font-size:22px;flex-shrink:0;}
-  .no-ss-txt{font-size:13px;color:var(--dust);line-height:1.6;}
-  .no-ss-txt strong{color:var(--neon);}
+  /* SALUD BANNER */
+  .salud-box{
+    display:flex;align-items:flex-start;gap:13px;
+    background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.22);
+    border-radius:12px;padding:16px 18px;margin-bottom:14px;}
+  .salud-ico{font-size:22px;flex-shrink:0;}
+  .salud-txt{font-size:13px;color:var(--dust);line-height:1.6;}
+  .salud-txt strong{color:var(--neon);}
 
-  /* ESTUDIANTES CASTILLO */
-  .cast-box{
-    background:rgba(106,170,138,.05);border:1px solid rgba(106,170,138,.22);
-    border-radius:14px;padding:20px 22px;margin-top:10px;}
-  .cast-label{font-family:'Orbitron',sans-serif;font-size:8.5px;letter-spacing:2.5px;
-    text-transform:uppercase;color:var(--ok);margin-bottom:10px;}
-  .cast-row{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:8px;
-    background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);margin-bottom:6px;}
-  .cast-row:last-child{margin-bottom:0;}
-  .cast-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);
-    box-shadow:0 0 7px rgba(106,170,138,.4);flex-shrink:0;}
-  .cast-name{font-size:13px;color:var(--dust);}
+  .rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:8px;}
+  @media(max-width:420px){.rep-grid{grid-template-columns:repeat(2,1fr);}}
+  .rep-item{background:var(--sur);border:1px solid var(--brd);border-radius:11px;
+    padding:12px;position:relative;overflow:hidden;transition:all .25s;}
+  .rep-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--accent);opacity:.45;}
+  .rep-item:hover{border-color:var(--brdh);transform:translateY(-2px);}
+  .ritime{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--neon);margin-bottom:3px;}
+  .rilabel{font-size:11px;color:var(--dust);line-height:1.35;}
+  .riico{font-size:17px;margin-bottom:6px;display:block;opacity:.75;}
 
   .code-row{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:9px;}
   .cbadge{font-family:'Orbitron',sans-serif;font-size:17px;font-weight:900;
@@ -141,7 +130,7 @@
   .drive-d{font-size:11.5px;color:var(--muted);}
   .drive-btn{border:1px solid var(--brd);border-radius:7px;padding:6px 13px;
     font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:1.5px;color:var(--accent);
-    flex-shrink:0;transition:border-color .25s;}
+    flex-shrink:0;}
   .drive-row:hover .drive-btn{border-color:var(--brdh);}
 
   .final{text-align:center;border:1px solid rgba(255,255,255,.06);border-radius:14px;
@@ -171,22 +160,15 @@
   <!-- HEADER -->
   <div class="hdr rv">
     <div class="hbadge">⬡ Comunicado SS · Sur 5</div>
-    <h1 class="htitle">RETROALIMENTACIÓN<br>&amp; RECUPERACIÓN 1</h1>
+    <h1 class="htitle">JORNADA DE<br>RECUPERACIÓN 2</h1>
     <p class="hsub">Ciclovía Bogotá · Módulo 1</p>
     <div class="hcorredor">📍 Sur 5 — Ciclorruta Porvenir &amp; Av. Guayacanes</div>
-    <div class="dpills">
-      <div class="dpill dp1">
+    <div style="margin-top:20px;">
+      <div class="dpill">
         <span style="opacity:.6;">⬜</span>
         <div>
-          <div class="pnum">Retroalimentación · Domingo</div>
-          <div style="font-size:13px;font-weight:700;letter-spacing:.5px;">17 de Mayo · 2026</div>
-        </div>
-      </div>
-      <div class="dpill dp2">
-        <span style="opacity:.6;">⬜</span>
-        <div>
-          <div class="pnum">Recuperación 1 · Lunes</div>
-          <div style="font-size:13px;font-weight:700;letter-spacing:.5px;">18 de Mayo · 2026</div>
+          <div class="pnum">Recuperación 2 · Sábado</div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:.5px;">24 de Mayo · 2026</div>
         </div>
       </div>
     </div>
@@ -195,45 +177,51 @@
   <!-- GREETING -->
   <div class="card rv" style="text-align:center;">
     <p style="font-size:clamp(13px,2.3vw,18px);font-weight:300;font-style:italic;color:var(--neon);opacity:.9;">
-      ¡Muy buen día, caballeros y señoritas! <br> Por mi parte, les doy la bienvenida a este lindo corredor. Espero que tengan una excelente rotación y recuerden que, para cualquier cosa, con mucho gusto estaré aquí para ayudarles. ✨
+      ¡Muy buen día, caballeros y señoritas!
     </p>
   </div>
 
-  <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
-
-  <!-- BLOQUE 17 MAYO — RETROALIMENTACIÓN -->
-  <div class="sl rv">Domingo 17 de Mayo · Retroalimentación</div>
-  <div class="day-block db1 rv">
-    <div class="day-label">Jornada de Retroalimentación</div>
-    <div class="day-title">Domingo 17 de Mayo</div>
-    <div class="day-date">Módulo 1 · Sur 5 — Ciclorruta Porvenir &amp; Av. Guayacanes</div>
-    <ul class="bl">
-      <li><span class="bd"></span>En esta jornada <strong>no habrá servidores sociales en el corredor.</strong></li>
-      <li><span class="bd"></span>Es la jornada oficial de <strong>evaluación, devolución de prendas y elementos</strong> suministrados por el IDRD.</li>
-      <li><span class="bd"></span>Los servidores deben devolver la gorra y la paleta limpias, dobladas y empacadas en bolsa transparente. Sin devolución, la certificación queda suspendida.</li>
-      <li><span class="bd"></span>La certificación se entrega <strong>únicamente al docente encargado del SSEO</strong> del colegio, una vez el colegio esté a paz y salvo.</li>
-      <li><span class="bd"></span>El dia domingo estare enviando al grupal de servicio social el docs con la actividad, ubicacion y descanso de los servidores sociales</li>
-    </ul>
-    <div class="no-ss">
-      <span class="no-ss-ico">🚫</span>
-      <span class="no-ss-txt"><strong>Sin servidores en el corredor.</strong> No aplica registro de asistencia en el drive para esta fecha.</span>
-    </div>
+  <!-- REPORTES -->
+  <div class="sl rv">Reportes del día</div>
+  <div class="rep-grid rv">
+    <div class="rep-item"><span class="riico">📋</span><div class="ritime">08:30</div><div class="rilabel">Asistencia drive<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
+    <div class="rep-item"><span class="riico">📔</span><div class="ritime">14:00</div><div class="rilabel">Foto libreta firmada<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
+    <div class="rep-item"><span class="riico">📊</span><div class="ritime">16:00</div><div class="rilabel">Reporte 523<br><span style="opacity:.5;font-size:10px;">Hora máxima</span></div></div>
+    
   </div>
 
   <div class="dv rv"><div class="ln"></div><div class="dt"></div><div class="dt"></div><div class="dt"></div><div class="ln"></div></div>
 
-  <!-- BLOQUE 18 MAYO — RECUPERACIÓN 1 -->
-  <div class="sl rv">Lunes 18 de Mayo · Recuperación 1</div>
-  <div class="day-block db2 rv">
-    <div class="day-label">Jornada de Recuperación 1</div>
-    <div class="day-title">Lunes 18 de Mayo</div>
-    <div class="day-date">Módulo 1 · Sur 5 — Ciclorruta Porvenir &amp; Av. Guayacanes</div>
+  <!-- NOVEDADES -->
+  <div class="sl rv">Novedades · Recuperación 2</div>
+
+  <!-- PUNTO AV BOYACÁ -->
+  <div class="punto-box rv">
+    <div class="punto-ico">📍</div>
+    <div>
+      <div class="punto-label">Punto activo · Jornada de recuperación</div>
+      <div class="punto-name">Av. Boyacá con Calle 12B</div>
+      <div class="punto-desc">Para esta jornada se contará con <strong style="color:var(--neon);">3 servidores sociales</strong> en este punto. El Guardián asignado debe estar atento desde el inicio de la jornada y mantener comunicación constante con el equipo.</div>
+    </div>
+  </div>
+
+  <!-- SALUD -->
+  <div class="salud-box rv">
+    <span class="salud-ico">🏥</span>
+    <span class="salud-txt">Por favor preguntar a cada servidor cómo se encuentra, si desayunó bien y cómo se siente antes de iniciar la jornada. Son solo 3 en el corredor — el acompañamiento debe ser cercano durante todo el día.</span>
+  </div>
+
+  <!-- UNIFORMIDAD Y ACTIVIDADES -->
+  <div class="card rv" style="--ca:linear-gradient(90deg,rgba(201,169,110,.4),rgba(142,175,212,.3));">
+    <div class="ch">
+      <div class="ci">👕</div>
+      <div><div class="ct">Uniformidad y actividades</div><div class="cs">Verificación obligatoria al inicio</div></div>
+    </div>
     <ul class="bl">
-      <li><span class="bd bv"></span>Para esta jornada de recuperación estarán presentes <strong>dos grupos del colegio Liceo El Castillo.</strong></li>
-      <li><span class="bd bv"></span><strong>Todos los servidores de Liceo El Castillo deben asistir</strong> a esta jornada sin excepción.</li>
-      <li><span class="bd bv"></span>En las jornadas de recuperación <strong>no se contará con ningún tipo de material del IDRD.</strong></li>
-      <li><span class="bd bv"></span>Cada servidor debe traer desde casa su actividad preparada — cartelera, dinámica o campaña lista para ejecutar desde el inicio.</li>
-      <li><span class="bd bv"></span>Aplican todas las normas de uniformidad, conducta y descansos del reglamento SSEO.</li>
+      <li><span class="bd bg"></span>Verificar el correcto uso del uniforme en los 3 servidores: jean azul, camiseta blanca por dentro, camibuso negro o blanco, gorra del IDRD recta.</li>
+      <li><span class="bd bg"></span>Cada servidor debe traer su actividad preparada desde casa. En jornadas de recuperación no hay material del IDRD.</li>
+      <li><span class="bd bg"></span>Si el servidor no trae actividad, el Guardián lo ubica como punto fijo. En ningún momento sin función.</li>
+      <li><span class="bd bg"></span>Servidores activos en todo momento. 561 de uso de celulares, jugar entre ellos o permanecer sentados fuera del horario de descanso.</li>
     </ul>
   </div>
 
@@ -243,7 +231,7 @@
   <div class="card rv">
     <div class="ch">
       <div class="ci">📊</div>
-      <div><div class="ct">Drive M1 · Registro</div><div class="cs">Aplica únicamente para el 18 de mayo</div></div>
+      <div><div class="ct">Drive M1 · Registro</div><div class="cs">Hoja de asistencia · Sur 5</div></div>
     </div>
     <div class="code-row">
       <div class="cbadge c57">57</div>
@@ -254,8 +242,8 @@
       <div style="font-size:13px;color:var(--dust);">Servidor <strong style="color:var(--neon);">sí asistió</strong></div>
     </div>
     <div class="callout" style="--clc:var(--accent);margin-top:12px;">
-      <span class="cico">💡</span>
-      <span class="ctxt">El registro de asistencia en el drive aplica <strong>solo para la jornada del 18 de mayo.</strong> El 17 no tiene servidores en corredor.</span>
+      <span class="cico">⚠️</span>
+      <span class="ctxt">El drive <strong>solo acepta "57" y "58"</strong>. Novedades del Servidor: consignarlas en la misma celda junto al código.</span>
     </div>
     <a href="https://docs.google.com/spreadsheets/d/1FqN_S_XNdC6NYwOa0jXA5UrUljUf4oeA6HPwllNnj9s/edit?gid=0#gid=0"
        target="_blank" class="drive-row">
@@ -274,7 +262,7 @@
       ¿Ya leíste el comunicado? Confirma tu lectura al Beta.
     </p>
     <a id="btnWA"
-       href="https://wa.me/573232043421?text=✅%20Leí%20el%20comunicado%20Retroalimentación%20y%20Recuperación%201%20–%2017%20y%2018%20de%20mayo."
+       href="https://wa.me/573232043421?text=✅%20Leí%20el%20comunicado%20Recuperación%202%20–%2024%20de%20mayo."
        target="_blank" onclick="confirmRead()"
        style="display:inline-flex;align-items:center;gap:10px;
          padding:13px 28px;border-radius:50px;
@@ -293,7 +281,7 @@
   <!-- FINAL -->
   <div class="final rv">
     <span class="ficon">⬡</span>
-    <p>Cierre de módulo con todo claro —<br>
+    <p>Recuperación 2 — <strong>presencia, cuidado y servicio.</strong><br>
     Nos vemos en el corredor.</p>
   </div>
 
@@ -321,14 +309,14 @@ let T=0;
   requestAnimationFrame(draw);
 })();
 function confirmRead(){
-  localStorage.setItem('read_retro_rec1_mayo','1');
+  localStorage.setItem('read_rec2_24mayo','1');
   document.getElementById('btnLabel').textContent='Confirmación enviada';
   const btn=document.getElementById('btnWA');
   btn.style.opacity='.4';btn.style.pointerEvents='none';
   document.getElementById('btnDone').style.display='block';
 }
 window.addEventListener('load',function(){
-  if(localStorage.getItem('read_retro_rec1_mayo')){
+  if(localStorage.getItem('read_rec2_24mayo')){
     document.getElementById('btnLabel').textContent='Ya confirmaste tu lectura';
     const btn=document.getElementById('btnWA');
     btn.style.opacity='.4';btn.style.pointerEvents='none';
